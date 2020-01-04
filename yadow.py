@@ -38,6 +38,9 @@ if __name__ == '__main__':
 
     if album_ids in ([], ['--help'], ['-?']):
         print('''Usage yadow.py [OPTIONS] ALBUM_ID [ALBUM_ID...]
+
+yadow downloads tracks from Yandex Music by their id
+
 Options:
     --help, -?        Print this help text and exit''')
         sys.exit()
