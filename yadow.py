@@ -15,7 +15,7 @@
 """
 yadow
 
-downloads tracks from Yandex Music by their id
+downloads tracks from Yandex Music by their albums' ids
 """
 
 import sys
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     if album_ids in ([], ['--help'], ['-?']):
         print('''Usage yadow.py [OPTIONS] ALBUM_ID [ALBUM_ID...]
 
-yadow downloads tracks from Yandex Music by their id
+yadow downloads tracks from Yandex Music by their albums' ids
 
 Options:
     --help, -?        Print this help text and exit''')
