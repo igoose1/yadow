@@ -52,14 +52,17 @@ Options:
             logger.error(f'invalid album id: {album_id}')
             continue
 
-        logger.info(f'{album.title}: found {album.track_count} tracks')
+        logger.info(f'"{album.title}": found {album.track_count} tracks')
 
         downloaded = 0
         path = album.title
-        os.mkdir(path)
+        try:
+            os.mkdir(path)
+        except FileExistsError:
+            logger.info(f'directory {path} exists')
         for disk in album.volumes:
             for track in disk:
-                logger.debug(f'downloading {track.title}')
+                logger.debug(f'downloading "{track.title}"')
                 try:
                     name = '{num}.{title}.mp3'.format(
                         num=str(album.track_count - downloaded).rjust(
@@ -72,5 +75,5 @@ Options:
                     )
                     downloaded += 1
                 except Exception:
-                    logger.error(f'could not download {track.title}')
+                    logger.error(f'could not download "{track.title}"')
         logger.info(f'downloaded {downloaded} tracks into {path}')
