@@ -61,10 +61,16 @@ Options:
             for track in disk:
                 logger.debug(f'downloading {track.title}')
                 try:
+                    name = '{num}.{title}.mp3'.format(
+                        num=str(downloaded + 1).rjust(
+                            len(str(album.track_count)), '0'
+                        ),
+                        title=track.title
+                    )
                     track.download(
-                        os.path.join(path, f'{track.title}.mp3'),
+                        os.path.join(path, name),
                     )
                     downloaded += 1
                 except Exception:
                     logger.error(f'could not download {track.title}')
-        logger.info(f'downloaded {downloaded} tracks')
+        logger.info(f'downloaded {downloaded} tracks into {path}')
