@@ -62,7 +62,7 @@ Options:
                 logger.debug(f'downloading {track.title}')
                 try:
                     name = '{num}.{title}.mp3'.format(
-                        num=str(downloaded + 1).rjust(
+                        num=str(album.track_count - downloaded).rjust(
                             len(str(album.track_count)), '0'
                         ),
                         title=track.title
