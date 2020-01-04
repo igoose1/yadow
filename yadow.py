@@ -1,3 +1,23 @@
+# Copyright 2020 Oskar Sharipov
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""
+yadow
+
+downloads tracks from Yandex Music by their id
+"""
+
 import sys
 import logging
 import os
@@ -9,12 +29,18 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(name)s - %(message)s'
 )
-logger = logging.getLogger('yadow')
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger('yadow')
     client = Client()
     album_ids = sys.argv[1:]
+
+    if album_ids in ([], ['--help'], ['-?']):
+        print('''Usage yadow.py [OPTIONS] ALBUM_ID [ALBUM_ID...]
+Options:
+    --help, -?        Print this help text and exit''')
+        sys.exit()
 
     for album_id in album_ids:
         try:
